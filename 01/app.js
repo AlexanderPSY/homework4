@@ -244,12 +244,8 @@ function makeHtmlTree(tree) {
     }
     str += `>`
     if (tree.text) str += tree.text
-    if (tree.subTags) {
-        return str + tree.subTags.reduce((accumulator, sub) => accumulator + makeHtmlTree(sub), '') + `</${tree.tagName}>`
-    }
-    else {
-        return `${str} </${tree.tagName}>`
-    }
+    if (tree.subTags) str += tree.subTags.reduce((accumulator, sub) => accumulator + makeHtmlTree(sub), '')
+    return str + `</${tree.tagName}>`
 }
 
 document.write(makeHtmlTree(someTree))
